@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/courseListFragment"
+        android:name="com.example.newattempt.CourseList.CourseListFragment"
+        android:label="fragment_course_list"
+        tools:layout="@layout/fragment_course_list">
+        <action
+            android:id="@+id/action_courseListFragment_to_addCourseFragment"
+            app:destination="@id/addCourseFragment" />
+        <action
+            android:id="@+id/action_courseListFragment_to_delete_confirmation_Fragment"
+            app:destination="@id/delete_confirmation_Fragment" />
+        <argument
+            android:name="PermissionToDeleteCourse"
+            app:argType="string" />
+        <argument
+            android:name="Course"
+            app:argType="com.example.gradecalculatorrevision.CourseRoom.Course" />
+        <action
+            android:id="@+id/action_courseListFragment_to_schoolWorkListFragment"
+            app:destination="@id/schoolWorkListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCourseFragment"
+        android:name="com.example.gradecalculatorrevision.addCourseFragment.AddCourseFragment"
+        android:label="AddCourseFragment">
+        <action
+            android:id="@+id/action_addCourseFragment_to_courseSectionListFragment"
+            app:destination="@id/courseSectionListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseSectionListFragment"
+        android:name="com.example.newattempt.CourseSectionList.CourseSectionListFragment"
+        android:label="fragment_course_section_list"
+        tools:layout="@layout/fragment_course_section_list">
+        <action
+            android:id="@+id/action_courseSectionListFragment_to_addCourseSectionFragment"
+            app:destination="@id/addCourseSectionFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_courseSectionListFragment_to_deleteCourseSection"
+            app:destination="@id/deleteCourseSection" />
+        <argument
+            android:name="deleteCourseSectionPermission"
+            android:defaultValue='"No"'
+            app:argType="string" />
+        <argument
+            android:name="deleteCourseSection"
+            android:defaultValue="@null"
+            app:argType="com.example.gradecalculatorrevision.CourseSectionRoom.CourseSection"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_courseSectionListFragment_to_courseListFragment"
+            app:destination="@id/courseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCourseSectionFragment"
+        android:name="com.example.newattempt.AddCourseSectionFragment.AddCourseSectionFragment"
+        android:label="fragment_add_course_section"
+        tools:layout="@layout/fragment_add_course_section">
+        <action
+            android:id="@+id/action_addCourseSectionFragment_to_courseSectionListFragment"
+            app:destination="@id/courseSectionListFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/delete_confirmation_Fragment"
+        android:name="com.example.newattempt.delete.delete_confirmation_Fragment"
+        android:label="fragment_delete_confirmation_"
+        tools:layout="@layout/fragment_delete_confirmation_">
+        <action
+            android:id="@+id/action_delete_confirmation_Fragment_to_courseListFragment"
+            app:destination="@id/courseListFragment" />
+        <argument
+            android:name="deleteCourse"
+            app:argType="com.example.gradecalculatorrevision.CourseRoom.Course" />
+    </fragment>
+    <argument
+        android:name="PermissionToDeleteCourse"
+        android:defaultValue='"No"' />
+    <argument
+        android:name="Course"
+        android:defaultValue='new Course("","","")' />
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.newattempt.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_courseListFragment"
+            app:destination="@id/courseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteCourseSection"
+        android:name="com.example.newattempt.delete.deleteCourseSection"
+        android:label="fragment_delete_course_section"
+        tools:layout="@layout/fragment_delete_course_section">
+        <action
+            android:id="@+id/action_deleteCourseSection_to_courseSectionListFragment"
+            app:destination="@id/courseSectionListFragment" />
+        <argument
+            android:name="deleteCourseSection"
+            app:argType="com.example.gradecalculatorrevision.CourseSectionRoom.CourseSection" />
+    </fragment>
+    <fragment
+        android:id="@+id/schoolWorkListFragment"
+        android:name="com.example.newattempt.SchoolWorkList.SchoolWorkListFragment"
+        android:label="fragment_school_work_list"
+        tools:layout="@layout/fragment_school_work_list">
+        <argument
+            android:name="course"
+            app:argType="com.example.gradecalculatorrevision.CourseRoom.Course"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_schoolWorkListFragment_to_schoolWorkExtensionFragment"
+            app:destination="@id/schoolWorkExtensionFragment" />
+        <argument
+            android:name="courseTitle"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/schoolWorkExtensionFragment"
+        android:name="com.example.newattempt.SchoolWorkExtensionList.SchoolWorkExtensionFragment"
+        android:label="fragment_school_work_extension"
+        tools:layout="@layout/fragment_school_work_extension" >
+        <action
+            android:id="@+id/action_schoolWorkExtensionFragment_to_schoolWorkListFragment"
+            app:destination="@id/schoolWorkListFragment" />
+        <action
+            android:id="@+id/action_schoolWorkExtensionFragment_to_insertGrade"
+            app:destination="@id/insertGrade" />
+        <argument
+            android:name="SchoolWork"
+            app:argType="com.example.newattempt.SchoolWorkRoom.SchoolWork" />
+        <argument
+            android:name="SchoolWorkTitle"
+            app:argType="string" />
+        <argument android:name="courseTitle" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertGrade"
+        android:name="com.example.newattempt.insertGrade.InsertGrade"
+        android:label="fragment_insert_grade"
+        tools:layout="@layout/fragment_insert_grade" >
+        <action
+            android:id="@+id/action_insertGrade_to_schoolWorkExtensionFragment"
+            app:destination="@id/schoolWorkExtensionFragment" />
+        <argument
+            android:name="SchoolWorkExstention"
+            app:argType="com.example.newattempt.SchoolWorkExtensionRoom.SchoolWorkExtension" />
+        <argument
+            android:name="CourseTitle"
+            app:argType="string" />
+        <argument
+            android:name="SchoolWork"
+            app:argType="com.example.newattempt.SchoolWorkRoom.SchoolWork" />
+    </fragment>
+</navigation>
